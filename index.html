@@ -79,6 +79,9 @@ p { margin: 0 0 1em; }
 .glance li:first-child { border-top: 0; }
 .glance .g-title { flex: 0 1 330px; font-weight: 600; }
 .glance .g-note { flex: 1 1 320px; color: var(--muted); }
+.glance .lead { margin: 0 0 10px; color: var(--muted); max-width: 680px; }
+.glance .used { display: block; margin-top: 4px; font-family: var(--sans); font-size: 0.82rem; color: var(--muted); }
+
 
 /* Projects */
 .project { display: flex; flex-wrap: wrap; gap: 28px 56px; padding: 56px 0; border-top: 1px solid var(--rule); }
@@ -157,8 +160,8 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
   <div class="wrap hero-inner">
     <div class="hero-text">
       <h1>Rodrigo Silva</h1>
-      <p class="lede">I build computational models of physical systems, calibrate them against real measurements, and quantify how far their predictions can be trusted.</p>
-      <p class="intro">This page shows three projects from my PhD and MSc. I am looking for industry roles where physics-based models support engineering decisions under uncertainty.</p>
+      <p class="lede">I build probabilistic models for expensive simulations: I calibrate them against data, quantify their uncertainty, and reduce their computational cost.</p>
+      <p class="intro">This page shows three projects from my PhD and MSc, using physical systems as examples. I am looking for industry roles in simulation, modeling and quantitative research, where getting the uncertainty right matters.</p>
       <p class="contact">
         <a href="https://www.linkedin.com/in/rodrigosilva0494/">LinkedIn</a>
         <a href="mailto:rodrigo.silva0494@gmail.com">rodrigo.silva0494@gmail.com</a>
@@ -202,6 +205,49 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
       <li>
         <a class="g-title" href="#hifu">Bayesian design of focused ultrasound tumor ablation</a>
         <span class="g-note">A biomedical application: planning the transducer position and exposure time for thermal ablation of tumors with focused ultrasound, under uncertain tissue properties.</span>
+      </li>
+    </ul>
+  </section>
+
+
+  <section class="glance" id="methods" aria-labelledby="methods-title">
+    <h2 id="methods-title">Methods behind the projects</h2>
+    <p class="lead">The examples are physical systems, but the toolkit applies wherever a model is expensive, the data are noisy, and decisions depend on knowing the uncertainty.</p>
+    <ul>
+      <li>
+        <span class="g-title">Bayesian inference</span>
+        <span class="g-note">Parameters are estimated by combining prior knowledge with the data. The result is a probability distribution instead of a single value, so every estimate comes with credible intervals.
+          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a>, <a href="#surrogates">surrogates</a>, <a href="#hifu">ultrasound ablation</a></span></span>
+      </li>
+      <li>
+        <span class="g-title">MCMC sampling</span>
+        <span class="g-note">Metropolis-Hastings, affine-invariant ensemble and NUTS samplers, compared on convergence, accuracy and computational cost. The comparison is published (see the papers listed under the first project).
+          <span class="used">Used in: all three projects</span></span>
+      </li>
+      <li>
+        <span class="g-title">Gaussian process surrogates</span>
+        <span class="g-note">Statistical approximations of expensive simulations that are cheap to evaluate and report their own uncertainty, which is carried into the Bayesian result.
+          <span class="used">Used in: <a href="#surrogates">surrogates</a></span></span>
+      </li>
+      <li>
+        <span class="g-title">Model selection</span>
+        <span class="g-note">Model complexity is chosen with information criteria (BIC, DIC), and numerical error is matched to the measurement noise, so the model stops where more detail no longer helps.
+          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a></span></span>
+      </li>
+      <li>
+        <span class="g-title">Uncertainty quantification</span>
+        <span class="g-note">Parameter uncertainty is propagated to predictions, and the predictions are compared with the measurements.
+          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a>, <a href="#hifu">ultrasound ablation</a></span></span>
+      </li>
+      <li>
+        <span class="g-title">Optimization under uncertainty</span>
+        <span class="g-note">Searching for the best design (transducer position and exposure time) while the tissue properties are uncertain.
+          <span class="used">Used in: <a href="#hifu">ultrasound ablation</a></span></span>
+      </li>
+      <li>
+        <span class="g-title">Computational efficiency</span>
+        <span class="g-note">Adaptive refinement and surrogates cut computation by about 40 times on real transient data, and by about 150 times on a two-parameter benchmark, with accuracy preserved.
+          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a>, <a href="#surrogates">surrogates</a></span></span>
       </li>
     </ul>
   </section>
