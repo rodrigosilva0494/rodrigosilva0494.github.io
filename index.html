@@ -153,6 +153,10 @@ table.data thead th { border-bottom: 2px solid var(--ink); font-weight: 700; }
 table.data caption { caption-side: bottom; text-align: left; color: var(--muted); font-size: 0.82rem; line-height: 1.5; padding-top: 8px; }
 .note { font-family: var(--sans); font-size: 0.85rem; line-height: 1.5; color: var(--muted); }
 .formula .eq-line { white-space: nowrap; }
+
+/* Keyword line under the headline */
+.keywords { display: flex; flex-wrap: wrap; gap: 0.4em 0.4em; list-style: none; margin: 0 0 1.2em; padding: 0; font-family: var(--sans); font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+.keywords li { white-space: nowrap; border: 1px solid var(--rule); border-radius: 999px; padding: 0.12em 0.75em; }
 </style>
 </head>
 <body>
@@ -160,7 +164,10 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
   <div class="wrap hero-inner">
     <div class="hero-text">
       <h1>Rodrigo Silva</h1>
-      <p class="lede">I build probabilistic models for expensive simulations: I calibrate them against data, quantify their uncertainty, and reduce their computational cost.</p>
+      <p class="lede">I build finite element simulations and validate them against experiments. I calibrate them with Bayesian inference and MCMC, quantify their uncertainty, and reduce their computational cost.</p>
+      <ul class="keywords" aria-label="Keywords">
+        <li>Finite element</li><li>Bayesian inference</li><li>MCMC</li><li>Uncertainty quantification</li><li>Verification and validation</li><li>Python</li><li>Julia</li><li>MATLAB</li>
+      </ul>
       <p class="intro">This page shows three projects from my PhD and MSc, using physical systems as examples. I am looking for industry roles in simulation, modeling and quantitative research, where getting the uncertainty right matters.</p>
       <p class="contact">
         <a href="https://www.linkedin.com/in/rodrigosilva0494/">LinkedIn</a>
@@ -191,6 +198,41 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
 <main>
 <div class="wrap">
 
+  <section class="glance" id="methods" aria-labelledby="methods-title">
+    <h2 id="methods-title">Methods</h2>
+    <p class="lead">The toolkit applies wherever a model is expensive, the data are noisy, and decisions depend on knowing the uncertainty.</p>
+    <ul>
+      <li>
+        <span class="g-title">Decrease in computational cost</span>
+        <span class="g-note">Matching model detail to the data cut computation by about 40 times on real transient data. Gaussian process surrogates, which approximate the simulation and report their own uncertainty, combined with adaptive refinement cut it by about 150 times on a two-parameter benchmark. Accuracy was preserved in both cases.</span>
+      </li>
+      <li>
+        <span class="g-title">Model selection</span>
+        <span class="g-note">The level of detail is chosen according to the quality of the data: the model is as accurate as the measurement error allows, and no more refined than that.</span>
+      </li>
+      <li>
+        <span class="g-title">Bayesian inference</span>
+        <span class="g-note">Parameters are estimated by combining prior knowledge with the data. The result is a probability distribution instead of a single value, so every estimate comes with credible intervals.</span>
+      </li>
+      <li>
+        <span class="g-title">MCMC sampling</span>
+        <span class="g-note">Samplers such as Metropolis-Hastings and NUTS, compared on convergence, accuracy and computational cost. The comparison is published in the <a href="https://doi.org/10.1615/Int.J.UncertaintyQuantification.2026060967"><em>International Journal for Uncertainty Quantification</em></a>.</span>
+      </li>
+      <li>
+        <span class="g-title">Uncertainty quantification</span>
+        <span class="g-note">Parameter uncertainty is propagated to predictions, so every prediction comes with a credible interval.</span>
+      </li>
+            <li>
+        <span class="g-title">Verification and validation</span>
+        <span class="g-note">Verification checks that the equations are solved correctly: my finite element solutions are compared with COMSOL, ANSYS and very fine reference solutions. Validation checks that the model describes reality: predictions are compared with real measurements, including experiments I built myself.</span>
+      </li>
+<li>
+        <span class="g-title">Optimization under uncertainty</span>
+        <span class="g-note">Searching for the best design (transducer position and exposure time) while the tissue properties are uncertain.</span>
+      </li>
+    </ul>
+  </section>
+
   <section class="glance" aria-labelledby="glance-title">
     <h2 id="glance-title">The three projects</h2>
     <ul>
@@ -210,47 +252,6 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
   </section>
 
 
-  <section class="glance" id="methods" aria-labelledby="methods-title">
-    <h2 id="methods-title">Methods behind the projects</h2>
-    <p class="lead">The examples are physical systems, but the toolkit applies wherever a model is expensive, the data are noisy, and decisions depend on knowing the uncertainty.</p>
-    <ul>
-      <li>
-        <span class="g-title">Bayesian inference</span>
-        <span class="g-note">Parameters are estimated by combining prior knowledge with the data. The result is a probability distribution instead of a single value, so every estimate comes with credible intervals.
-          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a>, <a href="#surrogates">surrogates</a>, <a href="#hifu">ultrasound ablation</a></span></span>
-      </li>
-      <li>
-        <span class="g-title">MCMC sampling</span>
-        <span class="g-note">Metropolis-Hastings, affine-invariant ensemble and NUTS samplers, compared on convergence, accuracy and computational cost. The comparison is published (see the papers listed under the first project).
-          <span class="used">Used in: all three projects</span></span>
-      </li>
-      <li>
-        <span class="g-title">Gaussian process surrogates</span>
-        <span class="g-note">Statistical approximations of expensive simulations that are cheap to evaluate and report their own uncertainty, which is carried into the Bayesian result.
-          <span class="used">Used in: <a href="#surrogates">surrogates</a></span></span>
-      </li>
-      <li>
-        <span class="g-title">Model selection</span>
-        <span class="g-note">Model complexity is chosen with information criteria (BIC, DIC), and numerical error is matched to the measurement noise, so the model stops where more detail no longer helps.
-          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a></span></span>
-      </li>
-      <li>
-        <span class="g-title">Uncertainty quantification</span>
-        <span class="g-note">Parameter uncertainty is propagated to predictions, and the predictions are compared with the measurements.
-          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a>, <a href="#hifu">ultrasound ablation</a></span></span>
-      </li>
-      <li>
-        <span class="g-title">Optimization under uncertainty</span>
-        <span class="g-note">Searching for the best design (transducer position and exposure time) while the tissue properties are uncertain.
-          <span class="used">Used in: <a href="#hifu">ultrasound ablation</a></span></span>
-      </li>
-      <li>
-        <span class="g-title">Computational efficiency</span>
-        <span class="g-note">Adaptive refinement and surrogates cut computation by about 40 times on real transient data, and by about 150 times on a two-parameter benchmark, with accuracy preserved.
-          <span class="used">Used in: <a href="#conductivity">thermal conductivity</a>, <a href="#surrogates">surrogates</a></span></span>
-      </li>
-    </ul>
-  </section>
 
   <!-- ===================== PROJECT 1 ===================== -->
   <article class="project" id="conductivity">
@@ -317,7 +318,7 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
       </figure>
 
       <h3>The algorithm</h3>
-      <p>The algorithm chooses how fine the model needs to be: the number of finite elements, the number of time steps, and the number of conductivity segments. It refines only until the numerical error is comparable to the measurement noise, and adds segments only while information criteria (BIC and DIC) say they are justified. It stops when the model is good enough for the data, instead of over-refining.</p>
+      <p>The algorithm chooses how fine the model needs to be: the number of finite elements, the number of time steps, and the number of conductivity segments. It refines only until the numerical error is comparable to the measurement noise, and adds segments only while information criteria say they are justified. It stops when the model is good enough for the data, instead of over-refining.</p>
       <p>On the real data it adapted to the information in each dataset. With the full data (transient and steady state) it chose 24 elements, 512 time steps and 8 segments. With steady-state data only it chose 8 elements, 2 time steps and 2 segments.</p>
 
       <figure class="fig" hidden>
