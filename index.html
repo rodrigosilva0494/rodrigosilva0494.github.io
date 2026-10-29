@@ -446,7 +446,14 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
       </figure>
 
       <h3>Bayesian design</h3>
-      <p>The unknowns are the transducer position and the exposure time, together with the uncertain tissue properties. They are sampled with MCMC. The likelihood describes the desired outcome: near-certain damage in the tumor, an open margin around it, and low damage elsewhere. The sampler optimizes the design while the tissue properties only add uncertainty. The table gives the prior of each tissue property, and the figures after it show the starting position of the transducer, the Markov chains converging to the optimal solution, and the final setting.</p>
+      <p>The unknowns are the transducer position and the exposure time, together with the uncertain tissue properties. They are sampled with MCMC. The likelihood describes the desired outcome: near-certain damage in the tumor, an open margin around it, and low damage elsewhere. The sampler optimizes the design while the tissue properties only add uncertainty. The first figure shows the domain, the table gives the prior of each tissue property, and the figures after it show the starting position of the transducer, the Markov chains converging to the optimal solution, and the final setting.</p>
+
+      <figure class="fig" hidden>
+        <img src="images/p3-domain.png" alt="Computational domain for the first tumor case: a layer of water at the top, then thin layers of skin and fat, and a muscle layer containing the small rectangular tumor." style="--w: 340px">
+        <div class="slot">Missing: images/p3-domain.png</div>
+        <figcaption>Computational domain, with the layers of water, skin, fat and muscle. The tumor sits inside the muscle layer.</figcaption>
+      </figure>
+
 
       <div class="datawrap">
         <table class="data">
