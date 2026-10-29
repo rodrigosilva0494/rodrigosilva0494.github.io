@@ -446,7 +446,23 @@ table.data caption { caption-side: bottom; text-align: left; color: var(--muted)
       </figure>
 
       <h3>Bayesian design</h3>
-      <p>The unknowns are the transducer position and the exposure time, together with the uncertain tissue properties. They are sampled with MCMC. The likelihood describes the desired outcome: near-certain damage in the tumor, an open margin around it, and low damage elsewhere. The sampler optimizes the design while the tissue properties only add uncertainty. The next figures show the starting position of the transducer, the Markov chains converging to the optimal solution, and the final setting.</p>
+      <p>The unknowns are the transducer position and the exposure time, together with the uncertain tissue properties. They are sampled with MCMC. The likelihood describes the desired outcome: near-certain damage in the tumor, an open margin around it, and low damage elsewhere. The sampler optimizes the design while the tissue properties only add uncertainty. The table gives the prior of each tissue property, and the figures after it show the starting position of the transducer, the Markov chains converging to the optimal solution, and the final setting.</p>
+
+      <div class="datawrap">
+        <table class="data">
+          <caption>Prior means of the physical properties of the biological tissues. Each prior is Gaussian with an assumed 2% relative standard deviation.</caption>
+          <thead>
+            <tr><th>Property</th><th>Skin</th><th>Fat</th><th>Muscle</th><th>Tumor</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Speed of sound <var>c</var><sub>0</sub> (m/s)</td><td>1480</td><td>1480</td><td>1580</td><td>1580</td></tr>
+            <tr><td>Density <var>ρ</var><sub>0</sub> (kg/m³)</td><td>1100</td><td>970</td><td>1070</td><td>1070</td></tr>
+            <tr><td>Attenuation <var>α</var><sub>0</sub> (dB/cm MHz<sup>1.2</sup>)</td><td>0.60</td><td>0.60</td><td>0.67</td><td>0.67</td></tr>
+            <tr><td>Specific heat <var>c</var> (J/kg °C)</td><td>3600</td><td>3600</td><td>3630</td><td>3630</td></tr>
+            <tr><td>Thermal conductivity <var>k</var> (W/m °C)</td><td>0.29</td><td>0.29</td><td>0.51</td><td>0.51</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <figure class="fig" hidden>
         <img src="images/p3-initial.png" alt="Initial position of the ultrasound transducer, shown as an arc at the top, above layers of water, skin, fat and muscle, with the tumor in the muscle." style="--w: 340px">
